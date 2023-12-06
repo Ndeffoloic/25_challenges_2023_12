@@ -10,25 +10,11 @@ def find_first_and_last_digit(file_txt_input):
         for line in f:
             new_line = convert_numbers_in_letters_to_numbers_in_digits(line)
             print(new_line)
-            first_digit = find_first_digit(new_line) 
-            last_digit = find_last_digit(new_line) 
+            first_digit = next((char for char in new_line if char.isdigit()), None)
+            last_digit = next((char for char in new_line[::-1] if char.isdigit()), None)
             line_numer = int(str(first_digit) + str(last_digit))
             file_numbers_sum += line_numer
     return file_numbers_sum
-
-        
-def find_first_digit(lineString) :
-    for letter in lineString:
-        if letter.isdigit() :
-            return letter
-            
-    
-    
-def find_last_digit(lineString):
-    inversed_line_Stream = lineString[::-1]
-    return find_first_digit(inversed_line_Stream)
-
-
 
 def convert_numbers_in_letters_to_numbers_in_digits(line):
     out_line = line
